@@ -8,3 +8,6 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('lettings/', include('lettings.urls')),
 ]
+
+handler404 = 'oc_lettings_site.views.custom_page_not_found_view'
+handler500 = 'oc_lettings_site.views.custom_server_error_view'
