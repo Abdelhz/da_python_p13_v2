@@ -36,10 +36,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('lettings', '0001_initial'),
-        ('oc_lettings_site', '0001_initial'),
+        #('oc_lettings_site', '0001_initial'),
     ]
 
     operations = [
-        migrations.RunPython(copy_addresses),
-        migrations.RunPython(copy_lettings),
+        #migrations.RunPython(copy_addresses),
+        #migrations.RunPython(copy_lettings),
     ]

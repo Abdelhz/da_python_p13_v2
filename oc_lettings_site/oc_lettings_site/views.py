@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseNotFound, HttpResponseServerError
 
 
 def index(request):
@@ -6,8 +7,10 @@ def index(request):
 
 
 def custom_page_not_found_view(request, exception):
-    return render(request, "errors/404.html", {})
+    response = render(request, "errors/404.html", {})
+    return HttpResponseNotFound(response.content)
 
 
 def custom_server_error_view(request):
-    return render(request, "errors/500.html", {})
+    response = render(request, "errors/500.html", {})
+    return HttpResponseServerError(response.content)
