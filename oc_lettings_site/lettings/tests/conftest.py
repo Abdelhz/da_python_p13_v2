@@ -1,6 +1,7 @@
 import pytest
 from lettings.models import Address, Letting
 
+
 @pytest.fixture
 def test_address(db):
     return Address.objects.create(
@@ -11,6 +12,7 @@ def test_address(db):
         zip_code=12345,
         country_iso_code='TST'
     )
+
 
 @pytest.fixture
 def test_letting(db, test_address):

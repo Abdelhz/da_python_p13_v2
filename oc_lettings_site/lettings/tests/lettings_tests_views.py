@@ -1,7 +1,7 @@
 import pytest
-from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from lettings.models import Letting
+
 
 def test_index_view(client, test_letting):
     url = reverse('lettings:index')
@@ -9,10 +9,12 @@ def test_index_view(client, test_letting):
     assert response.status_code == 200
     assert Letting.objects.count() == 1
 
+
 def test_letting_view(client, test_letting):
     url = reverse('lettings:letting', args=[test_letting.id])
     response = client.get(url)
     assert response.status_code == 200
+
 
 @pytest.mark.django_db
 def test_letting_view_with_nonexistent_letting(client):

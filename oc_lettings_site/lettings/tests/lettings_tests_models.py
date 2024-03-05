@@ -1,5 +1,4 @@
 import pytest
-from django.core.exceptions import ValidationError
 from lettings.models import Address, Letting
 
 
@@ -7,15 +6,19 @@ from lettings.models import Address, Letting
 def test_create_address(test_address):
     assert isinstance(test_address, Address)
 
+
 def test_create_letting(test_letting):
     assert isinstance(test_letting, Letting)
+
 
 # Read
 def test_read_address(test_address):
     assert Address.objects.get(id=test_address.id)
 
+
 def test_read_letting(test_letting):
     assert Letting.objects.get(id=test_letting.id)
+
 
 # Update
 def test_update_address(test_address):
@@ -23,10 +26,12 @@ def test_update_address(test_address):
     test_address.save()
     assert Address.objects.get(id=test_address.id).street == 'Updated Street'
 
+
 def test_update_letting(test_letting):
     test_letting.title = 'Updated Letting'
     test_letting.save()
     assert Letting.objects.get(id=test_letting.id).title == 'Updated Letting'
+
 
 # Delete
 def test_delete_address(test_address):
@@ -34,6 +39,7 @@ def test_delete_address(test_address):
     test_address.delete()
     with pytest.raises(Address.DoesNotExist):
         Address.objects.get(id=test_address_id)
+
 
 def test_delete_letting(test_letting):
     test_letting_id = test_letting.id

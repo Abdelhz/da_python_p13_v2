@@ -1,7 +1,7 @@
 import pytest
-from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from profiles.models import Profile
+
 
 def test_create_profile(test_profile):
     assert isinstance(test_profile, Profile)
