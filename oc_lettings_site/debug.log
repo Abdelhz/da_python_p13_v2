@@ -221,3 +221,16 @@ https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envel
 No Profile matches the given query.
 Not Found: /profiles/nonexistent/
 https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+Watching for file changes with StatReloader
+Starting new HTTPS connection (1): o4506827891802112.ingest.sentry.io:443
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
