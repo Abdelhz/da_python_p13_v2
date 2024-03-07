@@ -15,6 +15,59 @@ def test_create_profile(test_profile):
     assert isinstance(test_profile, Profile)
 
 
+def test_read_profile(test_profile):
+    """
+    Test if a profile can be retrieved from the database by their user's username.
+
+    This test attempts to retrieve the `test_profile` from the database by their user's username.
+    If the profile exists in the database, this should return a Profile object.
+
+    :param test_profile: pytest fixture that provides a test profile.
+    """
+    assert Profile.objects.get(user__username=test_profile.user.username)
+
+
+def test_update_profile(test_profile):
+    """
+    Test if updating a profile's favorite_city is reflected in the database.
+
+    This test first updates the favorite_city of the `test_profile` in the database, and then
+    attempts to retrieve a profile with the new favorite_city from the database. If the update
+    was successful, this should return a Profile object.
+
+    :param test_profile: pytest fixture that provides a test profile.
+    """
+    Profile.objects.filter(user__username=test_profile.user.username).update(favorite_city='New City')
+    assert Profile.objects.get(user__username=test_profile.user.username).favorite_city == 'New City'
+
+
+def test_delete_profile(test_profile):
+    """
+    Test if deleting a profile removes it from the database.
+
+    This test first deletes the `test_profile` from the database, and then attempts to retrieve
+    the same profile from the database. Since the profile has been deleted, this should raise a
+    `Profile.DoesNotExist` exception.
+
+    :param test_profile: pytest fixture that provides a test profile.
+    """
+    Profile.objects.get(user__username=test_profile.user.username).delete()
+    with pytest.raises(Profile.DoesNotExist):
+        Profile.objects.get(user__username=test_profile.user.username)
+
+
+def test_profile_str(test_profile):
+    """
+    Test the string representation of the Profile model.
+
+    This test checks if the `__str__` method of the `Profile` model returns the username of the
+    linked User instance.
+
+    :param test_profile: pytest fixture that provides a test profile.
+    """
+    assert str(test_profile) == test_profile.user.username
+
+
 def test_delete_user(test_user):
     """
     Test if deleting a user removes them from the database.

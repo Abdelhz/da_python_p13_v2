@@ -5,6 +5,7 @@ from django.db import migrations
 
 address_mapping = {}
 
+'''
 def copy_addresses(apps, schema_editor):
     global address_mapping
     OldAddress = apps.get_model('oc_lettings_site', 'Address')
@@ -21,6 +22,7 @@ def copy_addresses(apps, schema_editor):
         )
         address_mapping[old_address.id] = new_address
 
+
 def copy_lettings(apps, schema_editor):
     global address_mapping
     OldLetting = apps.get_model('oc_lettings_site', 'Letting')
@@ -31,6 +33,8 @@ def copy_lettings(apps, schema_editor):
             title=old_letting.title,
             address=address_mapping[old_letting.address.id],
         )
+'''
+
 
 class Migration(migrations.Migration):
 

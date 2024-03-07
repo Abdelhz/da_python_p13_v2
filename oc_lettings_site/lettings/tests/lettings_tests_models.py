@@ -113,3 +113,29 @@ def test_delete_letting(test_letting):
     test_letting.delete()
     with pytest.raises(Letting.DoesNotExist):
         Letting.objects.get(id=test_letting_id)
+
+
+def test_address_str(test_address):
+    """
+    Test function to verify the string representation of an Address object.
+
+    This function asserts that the string representation of the 'test_address'
+    fixture is in the format 'number street'.
+
+    :param test_address: Pytest fixture that provides a test Address object.
+    """
+    expected_str = f'{test_address.number} {test_address.street}'
+    assert str(test_address) == expected_str
+
+
+def test_letting_str(test_letting):
+    """
+    Test function to verify the string representation of a Letting object.
+
+    This function asserts that the string representation of the 'test_letting'
+    fixture is the title of the letting.
+
+    :param test_letting: Pytest fixture that provides a test Letting object.
+    """
+    expected_str = test_letting.title
+    assert str(test_letting) == expected_str

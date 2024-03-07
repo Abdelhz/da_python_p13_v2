@@ -3,6 +3,7 @@
 from django.db import migrations
 
 
+'''
 def copy_profiles(apps, schema_editor):
     OldProfile = apps.get_model('oc_lettings_site', 'Profile')
     Profile = apps.get_model('profiles', 'Profile')
@@ -12,7 +13,7 @@ def copy_profiles(apps, schema_editor):
             user_temp=old_profile.user,
             favorite_city=old_profile.favorite_city,
         )
-
+'''
 class Migration(migrations.Migration):
 
     dependencies = [

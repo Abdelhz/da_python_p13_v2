@@ -20,6 +20,26 @@ def test_index_view(client, test_letting):
     assert Letting.objects.count() == 1
 
 
+def test_index_view_exception_handling(client, monkeypatch):
+    """
+    Test function to verify the exception handling in the 'profiles:index' view.
+
+    This function uses the monkeypatch fixture to replace the `Profile.objects.all()` method
+    with a function that raises an exception, and then sends a GET request to the 'profiles:index' view.
+    It then asserts that the response status code is 404 (Not Found).
+
+    :param client: Django test client.
+    :param monkeypatch: pytest fixture for mocking.
+    """
+    def mock_raise(*args, **kwargs):
+        raise Exception
+
+    monkeypatch.setattr('profiles.views.Profile.objects.all', mock_raise)
+    url = reverse('profiles:index')
+    response = client.get(url)
+    assert response.status_code == 404
+
+
 def test_letting_view(client, test_letting):
     """
     Test function to verify the 'lettings:letting' view.
