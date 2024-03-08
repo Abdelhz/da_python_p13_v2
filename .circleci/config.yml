@@ -15,6 +15,7 @@ jobs:
       - python/install-packages
       - run: pip install -r requirements.txt
       - run: pip install --upgrade pip
+      - run: echo 'export PYTHONPATH="${PYTHONPATH}:/home/circleci/project"' >> $BASH_ENV
       - run:
           name: Run tests
           command: pytest
