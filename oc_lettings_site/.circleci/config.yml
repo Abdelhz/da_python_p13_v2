@@ -1,0 +1,47 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run: pip install -r requirements.txt
+  test:
+    docker:
+      - image: circleci/python:3.8
+    environment:
+      DJANGO_SETTINGS_MODULE: oc_lettings_site.settings    
+    steps:
+      - checkout
+      - run: pip install -r requirements.txt
+      - run: flake8 .
+      - run: pytest --cov=.
+      - run: coverage report --fail-under=80
+  containerize:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker build -t $DOCKERHUB_USER/oc_lettings_site:$CIRCLE_SHA1 .
+      - run: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+      - run: docker push $DOCKERHUB_USER/oc_lettings_site:$CIRCLE_SHA1
+  deploy:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - run: curl -X POST https://api.render.com/graphql -H "x-render-token: $RENDER_API_KEY" -H "Content-Type: application" -d '{"query":"mutation { syncService(serviceId: \"YOUR_RENDER_SERVICE_ID\") { id } }"}'
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - containerize:
+          requires:
+            - test
+      - deploy:
+          requires:
+            - containerize
