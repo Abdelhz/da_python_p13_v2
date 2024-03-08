@@ -18,7 +18,7 @@ jobs:
       - run: echo 'export PYTHONPATH="${PYTHONPATH}:/home/circleci/project/oc_lettings_site"' >> $BASH_ENV
       - run:
           name: Run tests
-          command: pytest
+          command: python -m pytest
       - run:
           name: Run linting
           command: flake8 .
