@@ -37,8 +37,10 @@ def test_update_profile(test_profile):
 
     :param test_profile: pytest fixture that provides a test profile.
     """
-    Profile.objects.filter(user__username=test_profile.user.username).update(favorite_city='New City')
-    assert Profile.objects.get(user__username=test_profile.user.username).favorite_city == 'New City'
+    Profile.objects.filter(user__username=test_profile.user.username).update(
+                                                                        favorite_city='New City')
+    assert Profile.objects.get(
+                            user__username=test_profile.user.username).favorite_city == 'New City'
 
 
 def test_delete_profile(test_profile):

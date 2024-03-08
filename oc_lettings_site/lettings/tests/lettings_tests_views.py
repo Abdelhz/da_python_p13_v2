@@ -25,7 +25,8 @@ def test_index_view_exception_handling(client, monkeypatch):
     Test function to verify the exception handling in the 'profiles:index' view.
 
     This function uses the monkeypatch fixture to replace the `Profile.objects.all()` method
-    with a function that raises an exception, and then sends a GET request to the 'profiles:index' view.
+    with a function that raises an exception, and then sends a
+    GET request to the 'profiles:index' view.
     It then asserts that the response status code is 404 (Not Found).
 
     :param client: Django test client.
