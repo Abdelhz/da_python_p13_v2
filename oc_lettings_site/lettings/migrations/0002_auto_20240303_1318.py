@@ -23,7 +23,7 @@ def copy_addresses(apps, schema_editor):
         address_mapping[old_address.id] = new_address
 
 
-def copy_lettings(apps, schema_editor):
+def colpy_lettings(apps, schema_editor):
     global address_mapping
     OldLetting = apps.get_model('oc_lettings_site', 'Letting')
     Letting = apps.get_model('lettings', 'Letting')
@@ -31,7 +31,7 @@ def copy_lettings(apps, schema_editor):
         Letting.objects.create(
             id=old_letting.id,
             title=old_letting.title,
-            address=address_mapping[old_letting.address.id],
+            address=address_mapping[old_etting.address.id],
         )
 '''
 
