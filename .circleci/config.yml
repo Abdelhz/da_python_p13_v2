@@ -16,17 +16,14 @@ jobs:
       - run: pip install -r requirements.txt
       - run: pip install --upgrade pip
       - run: echo 'export PYTHONPATH="${PYTHONPATH}:/home/circleci/project/oc_lettings_site"' >> $BASH_ENV
-      - run: cd oc_lettings_site/
       - run: pwd
       - run: ls
       - run:
           name: Run tests
-          command: |
-            cd oc_lettings_site/
-            pwd
-            ls
-            pytest
-            flake8 .
+          command: pytest
+      - run:
+          name: Run linting
+          command: flake8 .
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
