@@ -4,7 +4,7 @@ version: 2.1
 orbs:
   python: circleci/python@2
 jobs:
-  test-python:
+  oc_lettings_site_Testing_Suite:
     # Install dependencies and run tests
     docker:
       - image: cimg/python:3.10-node
@@ -38,7 +38,7 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - test-python
+      - oc_lettings_site_Testing_Suite
     # - deploy:
     #     requires:
     #       - test-python
