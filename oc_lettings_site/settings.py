@@ -149,7 +149,7 @@ LOGGING = {
 
 # Sentry Configuration
 sentry_sdk.init(
-    dns=SENTRY_DSN,
+    dsn=SENTRY_DSN,
     # dsn="https://879b66038fc86c0c47dbfba9c17b797d@"
     #    "o4506827891802112.ingest.sentry.io/4506858619535360",
     # dsn=os.environ.get('SENTRY_DSN'),
