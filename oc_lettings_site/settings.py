@@ -5,8 +5,8 @@ from sentry_sdk.integrations.django import DjangoIntegration
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#SECRET_KEY = os.environ.get('SECRET_KEY')
-#SENTRY_DSN = os.environ.get('SENTRY_DSN')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+# SENTRY_DSN = os.environ.get('SENTRY_DSN')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -18,7 +18,7 @@ SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-#ALLOWED_HOSTS = ['                             host', '127.0.0.1']
+# ALLOWED_HOSTS = ['host', '127.0.0.1']
 
 
 # Application definition
@@ -119,7 +119,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",]
 
 if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    # Tell Django to copy static assets into a path called `staticfiles`
+    # (this is specific to Render)
     STATIC_ROOT = BASE_DIR / "staticfiles"
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching

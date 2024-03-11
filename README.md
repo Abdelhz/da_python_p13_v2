@@ -75,3 +75,28 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+## Locally
+
+build image :
+
+```bash
+docker build -t oc-lettings-image:prod .
+```
+Re-TAG the image :
+
+```bash
+docker tag oc-lettings-image:prod shinkhan/da_python_p13_oc-lettings-site:CIRCLE_SHA1_LATEST
+```
+
+Push the image to Docker Hub :
+
+```bash
+docker push shinkhan/da_python_p13_oc-lettings-site:CIRCLE_SHA1_LATEST
+```
+
+Pull the image from Docker Hub :
+
+```bash
+docker pull shinkhan/da_python_p13_oc-lettings-site:CIRCLE_SHA1_LATEST
+```

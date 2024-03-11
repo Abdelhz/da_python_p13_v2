@@ -42,7 +42,7 @@ jobs:
             TAG=$CIRCLE_SHA1_LATEST
             docker build -t $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG .
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
-            docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1
+            docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG
 
   deploy:
     # This is an example deploy job, not actually used by the workflow
@@ -50,10 +50,11 @@ jobs:
       - image: cimg/python:3.10-node
     steps:
       - checkout
-      # Replace this with steps to deploy to users
       - run:
           name: deploy
-          command: '#e.g. ./deploy.sh'
+          command: /
+            deploy_url=$RENDER_DEPLOY_HOOK_URL
+            curl -X "deploy_url"
 workflows:
   build-and-test-and-deploy:
     jobs:

@@ -718,3 +718,29 @@ https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envel
 https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
 https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
 https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+No Letting matches the given query.
+Not Found: /lettings/999/
+Starting new HTTPS connection (1): o4506827891802112.ingest.sentry.io:443
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+No Profile matches the given query.
+Not Found: /profiles/nonexistent/
+
+Not Found: /profiles/
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+Not Found: /nonexistent-url
+Not Found: /nonexistent-url
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+Not Found: /nonexistent-url
+No Letting matches the given query.
+Not Found: /lettings/999/
+Starting new HTTPS connection (1): o4506827891802112.ingest.sentry.io:443
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+No Profile matches the given query.
+Not Found: /profiles/nonexistent/
+
+Not Found: /profiles/
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+Not Found: /nonexistent-url
+Not Found: /nonexistent-url
+https://o4506827891802112.ingest.sentry.io:443 "POST /api/4506858619535360/envelope/ HTTP/1.1" 200 0
+Not Found: /nonexistent-url
