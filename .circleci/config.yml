@@ -15,9 +15,10 @@ jobs:
       DJANGO_SETTINGS_MODULE: oc_lettings_site.settings
     steps:
       - checkout
-      - python/install-packages
-      - run: pip install -r requirements.txt
+      - python/install-packages:
+          pkg-manager: pip
       - run: pip install --upgrade pip
+      - run: pip install -r requirements.txt
       - run: echo 'export PYTHONPATH="${PYTHONPATH}:/home/circleci/project/oc_lettings_site"' >> $BASH_ENV
       - run: pwd
       - run: ls
@@ -39,7 +40,6 @@ jobs:
       - run:
           name: Build and push django app's docker image
           command: |
-            TAG=$CIRCLE_SHA1_LATEST
             docker build -t $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG .
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
             docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG
@@ -52,9 +52,8 @@ jobs:
       - checkout
       - run:
           name: deploy
-          command: /
-            deploy_url=$RENDER_DEPLOY_HOOK_URL
-            curl -X "deploy_url"
+          command: |
+            curl -X POST $RENDER_DEPLOY_HOOK_URL
 workflows:
   build-and-test-and-deploy:
     jobs:

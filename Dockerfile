@@ -29,6 +29,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 # Copy the source code into the container.
 COPY . .
 
+# Generate and apply database migrations
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
