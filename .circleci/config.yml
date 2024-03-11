@@ -1,10 +1,13 @@
 # This config was automatically generated from your source code
 # Stacks detected: deps:python:.,file:manage.py:oc_lettings_site
 version: 2.1
+
 orbs:
   python: circleci/python@2
+
 jobs:
-  oc_lettings_site_Testing_Suite:
+  
+  build_and_testing_Suite:
     # Install dependencies and run tests
     docker:
       - image: cimg/python:3.10-node
@@ -26,19 +29,49 @@ jobs:
       - run:
           name: Run linting
           command: flake8 .
+  
+  containerize:
+    docker:
+      - image: cimg/python:3.10-node
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build and push django app's docker image
+          command: |
+            TAG=$CIRCLE_SHA1_LATEST
+            docker build -t $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG .
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+            docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1
+
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
-      - image: cimg/base:stable
+      - image: cimg/python:3.10-node
     steps:
+      - checkout
       # Replace this with steps to deploy to users
       - run:
           name: deploy
           command: '#e.g. ./deploy.sh'
 workflows:
-  build-and-test:
+  build-and-test-and-deploy:
     jobs:
-      - oc_lettings_site_Testing_Suite
-    # - deploy:
-    #     requires:
-    #       - test-python
+
+      - build_and_testing_Suite
+
+      - containerize:
+          requires:
+            - build_and_testing_Suite
+          filters:
+            branches:
+              only:
+                - master
+      
+      - deploy:
+          requires:
+            - containerize
+          filters:
+            branches:
+              only:
+                - master
