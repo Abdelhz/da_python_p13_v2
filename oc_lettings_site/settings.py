@@ -18,8 +18,10 @@ SENTRY_DSN = os.environ.get('SENTRY_DSN')
 DEBUG = False
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['host', '127.0.0.1', 'localhost',
-'da-python-p13-oc-lettings-site-prod.onrender.com']
+ALLOWED_HOSTS = [
+    'host', '127.0.0.1', 'localhost',
+    'da-python-p13-oc-lettings-site-prod.onrender.com'
+]
 
 
 # Application definition
