@@ -91,12 +91,15 @@
              
   <section id="project-description">
 <h1>Project Description<a class="headerlink" href="#project-description" title="Link to this heading"></a></h1>
-<p>Orange County Lettings is a startup in the real estate rental sector. The startup is currently in the expansion phase in the United States. The objective of this project is to enhance the existing website (GitHub repository: OC Lettings) in the following areas:</p>
+<p>Orange County Lettings is a startup in the real estate rental sector. The startup is in the midst of expanding in the United States.</p>
+<p>The company has therefore decided to hire new recruits, of which you are a part. As a developer, you are expected to play a significant role in enhancing the company’s website, both in terms of code and deployment.</p>
+<p>This documentation details the changes made to the project.</p>
+<p>The project has been enhanced in the following ways:</p>
 <ul class="simple">
-<li><p>Reduction of various technical debts on the project</p></li>
-<li><p>Redesign of the modular architecture</p></li>
-<li><p>Addition of a CI/CD pipeline using CircleCI and Render</p></li>
-<li><p>Application monitoring and error tracking via Sentry</p></li>
+<li><p>Refactoring of the codebase by improving the <cite>modularity</cite> to improve readability and maintainability.</p></li>
+<li><p>Eliminating some technical debts but implementing a test suite using <cite>pytest-django</cite> and <cite>pytest-cov</cite>.</p></li>
+<li><p>Creation of a <cite>CI/CD</cite> pipeline using <cite>CircleCI</cite> that run the <cite>test suite</cite>, <cite>containerize</cite> the application using <cite>docker</cite>, and <cite>deploy</cite> the application to <cite>Render</cite> using an <cite>URL hook</cite>.</p></li>
+<li><p>Implement monitoring and error tracking system using <cite>Sentry</cite>.</p></li>
 </ul>
 </section>
 
