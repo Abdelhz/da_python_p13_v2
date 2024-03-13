@@ -43,6 +43,7 @@ jobs:
             docker build -t $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1 .
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
             docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1
+            docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG
 
   deploy:
     # This is an example deploy job, not actually used by the workflow
@@ -53,7 +54,7 @@ jobs:
       - run:
           name: deploy
           command: |
-            curl -X POST $RENDER_DEPLOY_HOOK_URL
+            curl -X POST "$RENDER_DEPLOY_HOOK_URL&commit=$CIRCLE_SHA1"
 workflows:
   build-and-test-and-deploy:
     jobs:
