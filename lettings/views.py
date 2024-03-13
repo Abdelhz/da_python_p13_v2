@@ -19,6 +19,7 @@ def index(request):
     :param request: The HTTP request object.
     :return: A render() call that combines the 'lettings/index.html' template
     with the context variable.
+
     """
     try:
         lettings_list = Letting.objects.all()
@@ -43,6 +44,7 @@ def letting(request, letting_id):
     :param letting_id: The ID of the letting to display.
     :return: A render() call that combines the 'lettings/letting.html' template with
     the context variable.
+
     """
     try:
         letting = get_object_or_404(Letting, id=letting_id)

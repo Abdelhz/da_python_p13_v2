@@ -16,6 +16,7 @@ def index(request):
     :param request: HttpRequest object that contains metadata about the request.
     :return: HttpResponse object with the rendered text (HTML code) of the 'index.html' template.
     :raises: Exception if there is an error during rendering.
+
     """
     try:
         return render(request, 'index.html')
@@ -36,6 +37,7 @@ def custom_page_not_found_view(request, exception):
     :return: HttpResponseNotFound object with the rendered text (HTML code)
     of the '404.html' template.
     :raises: Exception if there is an error during rendering.
+
     """
     try:
         response = render(request, "errors/404.html", {})

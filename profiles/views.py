@@ -15,6 +15,7 @@ def index(request):
     :return: HttpResponse object with the rendered text (HTML code) of the 'profiles/index.html'
     template.
     :raises Http404: If there is an error retrieving profiles.
+
     """
     try:
         profiles_list = Profile.objects.all()
@@ -34,6 +35,7 @@ def profile(request, username):
     :return: HttpResponse object with the rendered text (HTML code) of the 'profiles/profile.html'
     template.
     :raises Http404: If there is an error retrieving the profile.
+
     """
     try:
         profile = get_object_or_404(Profile, user__username=username)

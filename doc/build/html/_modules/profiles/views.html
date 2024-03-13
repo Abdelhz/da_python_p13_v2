@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>profiles.views &mdash; da_python_p13_oc-lettings-site 3.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            da_python_p13_oc-lettings-site
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../project_description.html">Project Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/clone_the_repository.html">Clone the Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/create_the_virtual_environment.html">Create the Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../local_development/run_the_site.html">Run the Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../local_development/run_the_site.html#generate-a-new-django-secret-key">Generate a New Django SECRET_KEY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../local_development/run_the_site.html#linting">Linting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../local_development/run_the_site.html#tests-coverage">Tests &amp; Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../local_development/run_the_site.html#database">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../local_development/run_the_site.html#admin-panel">Admin Panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_and_deploying/local_docker_running.html">Building and Deploying</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_and_deploying/online_deployment.html">Building and Deploying</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../profiles/models.html">Profiles Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../profiles/views.html">Profiles Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lettings/models.html">Lettings Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lettings/views.html">Lettings Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oc_lettings_site/views.html">OC Lettings Site Views</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">da_python_p13_oc-lettings-site</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">profiles.views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for profiles.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">Http404</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Profile</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="index">
+<a class="viewcode-back" href="../../profiles/views.html#profiles.views.index">[docs]</a>
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Handles the &#39;index&#39; request and renders a list of all profiles.</span>
+
+<span class="sd">    :param request: HttpRequest object that contains metadata about the request.</span>
+<span class="sd">    :return: HttpResponse object with the rendered text (HTML code) of the &#39;profiles/index.html&#39;</span>
+<span class="sd">    template.</span>
+<span class="sd">    :raises Http404: If there is an error retrieving profiles.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">profiles_list</span> <span class="o">=</span> <span class="n">Profile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;profiles_list&#39;</span><span class="p">:</span> <span class="n">profiles_list</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;profiles/index.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">Http404</span><span class="p">(</span><span class="s2">&quot;Error retrieving profiles&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="profile">
+<a class="viewcode-back" href="../../profiles/views.html#profiles.views.profile">[docs]</a>
+<span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Handles a request for a specific profile and renders that profile&#39;s detail view.</span>
+
+<span class="sd">    :param request: HttpRequest object that contains metadata about the request.</span>
+<span class="sd">    :param username: The username of the profile to retrieve.</span>
+<span class="sd">    :return: HttpResponse object with the rendered text (HTML code) of the &#39;profiles/profile.html&#39;</span>
+<span class="sd">    template.</span>
+<span class="sd">    :raises Http404: If there is an error retrieving the profile.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">profile</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Profile</span><span class="p">,</span> <span class="n">user__username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;profile&#39;</span><span class="p">:</span> <span class="n">profile</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;profiles/profile.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">Http404</span><span class="p">(</span><span class="s2">&quot;Error retrieving profile&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Abdelwahid HADJ ZOUBIR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

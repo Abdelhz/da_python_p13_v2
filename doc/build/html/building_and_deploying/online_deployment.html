@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building and Deploying &mdash; da_python_p13_oc-lettings-site 3.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=acc74ff5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Profiles Models" href="../profiles/models.html" />
+    <link rel="prev" title="Building and Deploying" href="local_docker_running.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            da_python_p13_oc-lettings-site
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../project_description.html">Project Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/clone_the_repository.html">Clone the Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/create_the_virtual_environment.html">Create the Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local_development/run_the_site.html">Run the Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local_development/run_the_site.html#generate-a-new-django-secret-key">Generate a New Django SECRET_KEY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local_development/run_the_site.html#linting">Linting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local_development/run_the_site.html#tests-coverage">Tests &amp; Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local_development/run_the_site.html#database">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local_development/run_the_site.html#admin-panel">Admin Panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_docker_running.html">Building and Deploying</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Building and Deploying</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#online-deployment">Online Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deployment-run">Deployment RUN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variables-to-setup">Environment Variables to Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#circleci-environment-variables">CircleCI Environment Variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles/models.html">Profiles Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiles/views.html">Profiles Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lettings/models.html">Lettings Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lettings/views.html">Lettings Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oc_lettings_site/views.html">OC Lettings Site Views</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">da_python_p13_oc-lettings-site</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Building and Deploying</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/building_and_deploying/online_deployment.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="building-and-deploying">
+<h1>Building and Deploying<a class="headerlink" href="#building-and-deploying" title="Link to this heading"></a></h1>
+<section id="online-deployment">
+<h2>Online Deployment<a class="headerlink" href="#online-deployment" title="Link to this heading"></a></h2>
+<p>After doing the following:</p>
+<ul class="simple">
+<li><p>Creating and setting up a CircleCi and project with your github project and the needed environment variables.</p></li>
+<li><p>Creating and setting up a docker account</p></li>
+<li><p>Creating an Render account and new web service linked to your main image in docker hub.</p></li>
+</ul>
+<section id="deployment-run">
+<h3>Deployment RUN<a class="headerlink" href="#deployment-run" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">URL</span></code> given by your <code class="docutils literal notranslate"><span class="pre">Render</span> <span class="pre">Web</span> <span class="pre">Service</span></code> to the <code class="docutils literal notranslate"><span class="pre">ALLOWED_HOSTS</span></code> list in your <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>.</p></li>
+<li><p>After adding the <code class="docutils literal notranslate"><span class="pre">Render</span> <span class="pre">web</span> <span class="pre">service</span> <span class="pre">URL</span></code>, simply commit your code and push it to your github (the one linked to your CircleCI Pipeline), the pipeline will do the work</p></li>
+<li><p>Visit the <code class="docutils literal notranslate"><span class="pre">URL</span></code> given by your <code class="docutils literal notranslate"><span class="pre">Render</span> <span class="pre">Web</span> <span class="pre">Service</span></code>.</p></li>
+</ul>
+</section>
+<section id="environment-variables-to-setup">
+<h3>Environment Variables to Setup<a class="headerlink" href="#environment-variables-to-setup" title="Link to this heading"></a></h3>
+<section id="circleci-environment-variables">
+<h4>CircleCI Environment Variables<a class="headerlink" href="#circleci-environment-variables" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DOCKERHUB_PASS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">Docker</span> <span class="pre">username</span></code></p></td>
+<td><p>This is the username from the Docker account credentials</p></td>
+</tr>
+<tr class="row-odd"><td><p>DOCKERHUB_USER</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">Docker</span> <span class="pre">password</span></code></p></td>
+<td><p>This is the password from the Docker account credentials</p></td>
+</tr>
+<tr class="row-even"><td><p>RENDER_DEPLOY_HOOK_URL</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">render</span> <span class="pre">web</span> <span class="pre">service</span> <span class="pre">hook</span></code></p></td>
+<td><p>Obtained from the render web service settings page after creating the render web service and linking it to your docker image from docker hub.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SECRET_KEY</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">django</span> <span class="pre">secret</span> <span class="pre">key</span></code></p></td>
+<td><p>Generated earlier</p></td>
+</tr>
+<tr class="row-even"><td><p>SENTRY_DSN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">Sentry</span> <span class="pre">DSN</span> <span class="pre">key</span></code></p></td>
+<td><p>Obtained from sentry website in your project</p></td>
+</tr>
+<tr class="row-odd"><td><p>TAG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">main</span> <span class="pre">image</span> <span class="pre">TAG</span></code></p></td>
+<td><p>The custom tag you chose for the main image</p></td>
+</tr>
+</tbody>
+</table>
+<p>The CircleCI pipeline defined by the config.yml file has 3 main job executed in the workflows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Job Name</p></th>
+<th class="head"><p>Requires</p></th>
+<th class="head"><p>Branch Filters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>build_and_testing_Suite</p></td>
+<td><p>None</p></td>
+<td><p>Every branch</p></td>
+</tr>
+<tr class="row-odd"><td><p>containerize</p></td>
+<td><p>build_and_testing_Suite</p></td>
+<td><p>Only master branch</p></td>
+</tr>
+<tr class="row-even"><td><p>deploy</p></td>
+<td><p>containerize</p></td>
+<td><p>Only master branch</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="local_docker_running.html" class="btn btn-neutral float-left" title="Building and Deploying" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../profiles/models.html" class="btn btn-neutral float-right" title="Profiles Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Abdelwahid HADJ ZOUBIR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

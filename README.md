@@ -202,6 +202,8 @@ Exit :
 - Go to `http://localhost:8000/admin`
 - Log in with user `admin`, password `Abc1234!`
 
+# BUILDING AND DEPLOYING
+
 ## Local Docker Running
 
 In the project root directory the `docker_local_commands.sh` does the following when ran :
@@ -213,11 +215,11 @@ In the project root directory the `docker_local_commands.sh` does the following 
 
 In order to use this file you need to modify it as following :
 
-- Open the file in editor;
-- Replace the `Your username` in `DOCKERHUB_USER="Your username"` with you actual Docker `username`.
-- Replace the `Your password` in `DOCKERHUB_PASS="Your password"` with you actual Docker `password`.
-- Replace the `Your secret key` in `SECRET_KEY="Your secret key"` with you actual Django `secret key` that you generated before.
-- Replace the `Your secret key` in `SENTRY_DSN="Your SENTRY_DSN key"` with you actual Sentry `DNS key` that you get from your sentry project on sentry website.
+- Open the file `docker_local_commands.sh` in editor;
+- Replace the `Your username` in `DOCKERHUB_USER="Your username"` with you actual Docker `username`;
+- Replace the `Your password` in `DOCKERHUB_PASS="Your password"` with you actual Docker `password`;
+- Replace the `Your secret key` in `SECRET_KEY="Your secret key"` with you actual Django `secret key` that you generated before;
+- Replace the `Your secret key` in `SENTRY_DSN="Your SENTRY_DSN key"` with you actual Sentry `DNS key` that you get from your sentry project on sentry website;
 
 After setting up the `docker_local_commands.sh`
 
@@ -239,18 +241,13 @@ After doing the following :
 
 ### Deployment RUN
 
-Simply commit your code and push it to your github (the one linked to your CircleCI Pipeline) !
+- Add the `URL` given by your `Render Web Service` to the `ALLOWED_HOSTS` list in your `settings.py`.
+- After adding the `Render web service URL`, simply commit your code and push it to your github (the one linked to your CircleCI Pipeline), the pipeline will do the work
+- Visite the `URL` given by your `Render Web Service`.
 
 ### Environment variables to SETUP
 
 #### CircleCI environment variables
-
-- DOCKERHUB_PASS : `Your Docker username`;
-- DOCKERHUB_USER : `Your Docker password`;
-- RENDER_DEPLOY_HOOK_URL : `Your render web service hook` (obtained from the render web service settings page after creating the render web service and linking it to your docker image from docker hub.);
-- SECRET_KEY : `Your django secret key` (generated earlier);
-- SENTRY_DSN : `Your Sentry DSN key` (obtained from sentry website in your project);
-- TAG : `Your main image TAG` (The custom tag you chose for the main image).
 
 | Name                     | Value                        | Description |
 | ------------------------ | ---------------------------- | ----------- |
