@@ -215,11 +215,11 @@ In the project root directory the `docker_local_commands.sh` does the following 
 
 In order to use this file you need to modify it as following :
 
-- Open the file in editor;
-- Replace the `Your username` in `DOCKERHUB_USER="Your username"` with you actual Docker `username`.
-- Replace the `Your password` in `DOCKERHUB_PASS="Your password"` with you actual Docker `password`.
-- Replace the `Your secret key` in `SECRET_KEY="Your secret key"` with you actual Django `secret key` that you generated before.
-- Replace the `Your secret key` in `SENTRY_DSN="Your SENTRY_DSN key"` with you actual Sentry `DNS key` that you get from your sentry project on sentry website.
+- Open the file `docker_local_commands.sh` in editor;
+- Replace the `Your username` in `DOCKERHUB_USER="Your username"` with you actual Docker `username`;
+- Replace the `Your password` in `DOCKERHUB_PASS="Your password"` with you actual Docker `password`;
+- Replace the `Your secret key` in `SECRET_KEY="Your secret key"` with you actual Django `secret key` that you generated before;
+- Replace the `Your secret key` in `SENTRY_DSN="Your SENTRY_DSN key"` with you actual Sentry `DNS key` that you get from your sentry project on sentry website;
 
 After setting up the `docker_local_commands.sh`
 
@@ -241,7 +241,9 @@ After doing the following :
 
 ### Deployment RUN
 
-Simply commit your code and push it to your github (the one linked to your CircleCI Pipeline) !
+- Add the `URL` given by your `Render Web Service` to the `ALLOWED_HOSTS` list in your `settings.py`.
+- After adding the `Render web service URL`, simply commit your code and push it to your github (the one linked to your CircleCI Pipeline), the pipeline will do the work
+- Visite the `URL` given by your `Render Web Service`.
 
 ### Environment variables to SETUP
 
