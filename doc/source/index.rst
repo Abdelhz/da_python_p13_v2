@@ -22,6 +22,7 @@ Welcome to da_python_p13_oc-lettings-site's documentation!
    lettings/models
    lettings/views
    oc_lettings_site/views
+   uml_diagram
 
 
 
