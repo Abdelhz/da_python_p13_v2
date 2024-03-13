@@ -40,9 +40,9 @@ jobs:
       - run:
           name: Build and push django app's docker image
           command: |
-            docker build -t $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG .
+            docker build -t $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1 .
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
-            docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG
+            docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1
 
   deploy:
     # This is an example deploy job, not actually used by the workflow
