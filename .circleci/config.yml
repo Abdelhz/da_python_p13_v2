@@ -41,6 +41,7 @@ jobs:
           name: Build and push django app's docker image
           command: |
             docker build -t $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1 .
+            docker tag $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1 $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
             docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$CIRCLE_SHA1
             docker push $DOCKERHUB_USER/da_python_p13_oc-lettings-site:$TAG
