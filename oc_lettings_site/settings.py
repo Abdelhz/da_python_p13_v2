@@ -18,8 +18,8 @@ SENTRY_DSN = os.environ.get('SENTRY_DSN')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['host', '127.0.0.1']
+#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['host', '127.0.0.1', '*.onrender.com', 'localhost']
 
 
 # Application definition
