@@ -55,7 +55,7 @@ jobs:
       - run:
           name: deploy
           command: |
-            curl -X POST "$RENDER_DEPLOY_HOOK_URL&commit=$CIRCLE_SHA1"
+            curl -X POST $RENDER_DEPLOY_HOOK_URL
 workflows:
   build-and-test-and-deploy:
     jobs:
