@@ -202,6 +202,8 @@ Exit :
 - Go to `http://localhost:8000/admin`
 - Log in with user `admin`, password `Abc1234!`
 
+# BUILDING AND DEPLOYING
+
 ## Local Docker Running
 
 In the project root directory the `docker_local_commands.sh` does the following when ran :
