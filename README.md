@@ -1,102 +1,270 @@
-## Résumé
+# Summary
 
-Site web d'Orange County Lettings
+Orange County Lettings is a startup in the real estate rental sector. The startup is in the midst of expanding in the United States.
 
-## Développement local
+## Prerequisites
 
-### Prérequis
+- GitHub account with read access to this repository.
+- Git CLI.
+- SQLite3 CLI.
+- Python interpreter, version 3.6 or higher.
+- Git for windows installed (If using windows as OS)
+- Docker engin installed in your system. Visite `https://docs.docker.com/engine/install/` for installation procedure.
+- A Sentry account with a created project and a `Sentry DSN key`. Visite `https://sentry.io` and `https://docs.sentry.io/product/sentry-basics/integrate-backend/getting-started/` for more details.
+- A CircleCI Account with CircleCi project connected to your project repository on `GitHub`, `Gitlab` or `BitBucket`. (Adding the django `SECRET_KEY`, `SENTRY_DSN`, `DOCKERHUB_USER`, `$DOCKERHUB_PASS` and `$TAG` with the value `CIRCLE_SHA1_LATEST` to the circleci environment variables). Visite `https://circleci.com` and `https://circleci.com/docs/` for more details.
+- A Docker Account with Docker `username` for `$DOCKERHUB_USER` and `password` for `$DOCKERHUB_PASS` added as environment variables for `Docker HUB` access. Visite `https://www.docker.com/`.
+- A Render Account (with Web service created for the Docker HUB main image after creating and pushing this image) and adding `SECRET_KEY` and `SENTRY_DSN` as environment variables. Visite `https://www.render.com`
 
-- Compte GitHub avec accès en lecture à ce repository
-- Git CLI
-- SQLite3 CLI
-- Interpréteur Python, version 3.6 ou supérieure
+## Local Development
 
-Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
+Throughout the rest of the local development documentation, it is assumed that the `python` command in your OS shell executes the above Python interpreter (unless a virtual environment is activated).
 
-### macOS / Linux
+Works on macOS / Linux / or windows git bash :
 
-#### Cloner le repository
+### Clone the repository
 
-- `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+You can fork the project from `https://github.com/Abdelhz/da_python_p13_v2.git` to you own github repository
 
-#### Créer l'environnement virtuel
+- Create a new folder for the project :
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `python -m venv venv`
-- `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
-- Activer l'environnement `source venv/bin/activate`
-- Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
-`which python`
-- Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
-- Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
-- Pour désactiver l'environnement, `deactivate`
+```bash
+mkdir oc_lettings_project
+cd oc_lettings_project
+```
 
-#### Exécuter le site
+clone the project from your own github repository after forking it from `https://github.com/Abdelhz/da_python_p13_v2.git`
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pip install --requirement requirements.txt`
-- `python manage.py runserver`
-- Aller sur `http://localhost:8000` dans un navigateur.
-- Confirmer que le site fonctionne et qu'il est possible de naviguer (vous devriez voir plusieurs profils et locations).
+```bash
+git clone "Your own Github repository"
+```
+
+OR :
+
+```bash
+git clone https://github.com/Abdelhz/da_python_p13_v2.git
+```
+
+Then you have to push this project to your own repository.
+
+### Create the virtual environment
+
+Enter the parent directory :
+
+```bash
+cd /path/to/oc_lettings_project
+```
+
+Create the python virtual environment :
+
+```bash
+python -m venv env_oc_lettings_project
+```
+
+activate virtual environment :
+
+```bash
+source env_oc_lettings_project/Scripts/activate
+```
+
+Install dependencies :
+
+```bash
+pip install -r da_python_p13_v2/requirements.txt
+```
+
+Deactivate the virtual environment (if needed) :
+
+```bash
+source env_oc_lettings_project/Scripts/deactivate
+```
+
+### Run the site
+
+activate virtual environment :
+
+```bash
+source env_oc_lettings_project/Scripts/activate
+```
+
+Enter the project root directory :
+
+```bash
+cd /path/to/da_python_p13_v2
+```
+
+#### Generate a new django SECRET_KEY
+
+Enter django shell :
+
+```bash
+python manage.py shell
+```
+
+Generate a new django secret key (in the shell) :
+
+```python
+import secrets
+print(secrets.token_hex(24))
+```
+
+Copy the secret key then exit the shell with :
+
+```python
+exit()
+```
+
+Export the django SECRET_KEY and the sentry DSN :
+
+```bash
+export SECRET_KEY='your_new_secret_key'
+export SENTRY_DSN='your_sentry_dsn_here'
+```
+
+Make the migrations before running the django application (if needed) :
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Run the Django application :
+
+```bash
+python manage.py runserver
+```
+
+Access the django application from browser
+
+- Go to `http://localhost:8000` in a browser.
+- Confirm that the site works and is navigable (you should see several profiles and locations).
 
 #### Linting
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `flake8`
-
-#### Tests unitaires
-
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pytest`
-
-#### Base de données
-
-- `cd /path/to/Python-OC-Lettings-FR`
-- Ouvrir une session shell `sqlite3`
-- Se connecter à la base de données `.open oc-lettings-site.sqlite3`
-- Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
-- Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
-- `.quit` pour quitter
-
-#### Panel d'administration
-
-- Aller sur `http://localhost:8000/admin`
-- Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
-
-### Windows
-
-Utilisation de PowerShell, comme ci-dessus sauf :
-
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
-- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
-
-## Locally
-
-build image :
-
 ```bash
-docker build -t oc-lettings-image:prod .
-```
-Re-TAG the image :
-
-```bash
-docker tag oc-lettings-image:prod shinkhan/da_python_p13_oc-lettings-site:CIRCLE_SHA1_LATEST
+cd /path/to/da_python_p13_v2
+source env_oc_lettings_project/Scripts/activate
+flake8
 ```
 
-Push the image to Docker Hub :
+#### Tests & coverage
 
 ```bash
-docker push shinkhan/da_python_p13_oc-lettings-site:CIRCLE_SHA1_LATEST
+cd /path/to/da_python_p13_v2
+source env_oc_lettings_project/Scripts/activate
+pytest
 ```
 
-Pull the image from Docker Hub :
+#### Database
 
 ```bash
-docker pull shinkhan/da_python_p13_oc-lettings-site:CIRCLE_SHA1_LATEST
+cd /path/to/da_python_p13_v2
+flake8
 ```
+
+Open a shell session :
+
+```bash
+sqlite3
+```
+
+Connect to the database :
+
+```bash
+.open oc-lettings-site.sqlite3
+```
+
+Display tables in the database :
+
+```bash
+.tables
+```
+
+Display columns in the profiles table :
+
+```bash
+pragma table_info(Python-OC-Lettings-FR_profile);
+```
+
+Run a query on the profiles table :
+
+```bash
+select user_id, favorite_city from Python-OC-Lettings-FR_profile where favorite_city like 'B%';
+```
+
+Exit :
+
+```bash
+.quit
+```
+
+#### Admin panel
+
+- Go to `http://localhost:8000/admin`
+- Log in with user `admin`, password `Abc1234!`
+
+## Local Docker Running
+
+In the project root directory the `docker_local_commands.sh` does the following when ran :
+
+- Build the docker image.
+- Push the docker image to the docker HUB.
+- Pull back the Image from the docker HUB.
+- Run locally the docker image.
+
+In order to use this file you need to modify it as following :
+
+- Open the file in editor;
+- Replace the `Your username` in `DOCKERHUB_USER="Your username"` with you actual Docker `username`.
+- Replace the `Your password` in `DOCKERHUB_PASS="Your password"` with you actual Docker `password`.
+- Replace the `Your secret key` in `SECRET_KEY="Your secret key"` with you actual Django `secret key` that you generated before.
+- Replace the `Your secret key` in `SENTRY_DSN="Your SENTRY_DSN key"` with you actual Sentry `DNS key` that you get from your sentry project on sentry website.
+
+After setting up the `docker_local_commands.sh`
+
+Run this command from terminal in the project root directory :
+
+```bash
+bash docker_local_commands.sh
+```
+
+- On a browser go to `http://localhost:8000/` to access the locally ran website.
+
+## Online deployment
+
+After doing the following :
+
+- Creating and setting up a CircleCi and project with your github project and the needed environment variables.
+- Creating and setting up a docker account
+- Creating an Render account and new web service linked to your main image in docker hub.
+
+### Deployment RUN
+
+Simply commit your code and push it to your github (the one linked to your CircleCI Pipeline) !
+
+### Environment variables to SETUP
+
+#### CircleCI environment variables
+
+- DOCKERHUB_PASS : `Your Docker username`;
+- DOCKERHUB_USER : `Your Docker password`;
+- RENDER_DEPLOY_HOOK_URL : `Your render web service hook` (obtained from the render web service settings page after creating the render web service and linking it to your docker image from docker hub.);
+- SECRET_KEY : `Your django secret key` (generated earlier);
+- SENTRY_DSN : `Your Sentry DSN key` (obtained from sentry website in your project);
+- TAG : `Your main image TAG` (The custom tag you chose for the main image).
+
+| Name                     | Value                        | Description |
+| ------------------------ | ---------------------------- | ----------- |
+| DOCKERHUB_PASS           | `Your Docker username`       | This is the username from the Docker account credentials            |
+| DOCKERHUB_USER           | `Your Docker password`       | This is the password from the Docker account credentials             |
+| RENDER_DEPLOY_HOOK_URL   | `Your render web service hook` | Obtained from the render web service settings page after creating the render web service and linking it to your docker image from docker hub. |
+| SECRET_KEY               | `Your django secret key`     | Generated earlier |
+| SENTRY_DSN               | `Your Sentry DSN key`        | Obtained from sentry website in your project |
+| TAG                      | `Your main image TAG`        | The custom tag you chose for the main image |
+
+The CircleCI pipeline defined by the config.yml file has 3 main job executed in the workflows :
+
+| Job Name              | Requires           | Branch Filters |
+| --------------------- | ------------------ | -------------- |
+| build_and_testing_Suite | None               | Every branch          |
+| containerize          | build_and_testing_Suite | Only master branch   |
+| deploy                | containerize       | Only master branch    |

@@ -13,7 +13,7 @@ IMAGE_NAME="da_python_p13_oc-lettings-site"
 TAG=$(git rev-parse --short HEAD)  # Use the short commit hash as the tag
 
 # Set environment variables
-export SECRET_KEY="fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s"
+export SECRET_KEY='fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
 export SENTRY_DSN="https://879b66038fc86c0c47dbfba9c17b797d@o4506827891802112.ingest.sentry.io/4506858619535360"
 
 # Build the Docker image
